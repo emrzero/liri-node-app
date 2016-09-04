@@ -2,6 +2,7 @@ var fs = require('fs');
 var myRequest = require('request');
 
 var twitter = require('./my-tweets.js');
+var spotify_this = require('./spotify-this-song')
 
 var newArr = process.argv.slice(2);
   // * `my-tweets`  DONE
@@ -38,7 +39,7 @@ function runCMD (){
 
 
 function spotify() {
-  console.log('rock on!');
+  spotify_this.songQuery(newArr[1]);
 }
 
 function movie(){
@@ -46,7 +47,6 @@ function movie(){
 }
 
 function simonSays(){
-  // console.log('simon says...');
   fs.readFile('random.txt', 'utf8', function(error, data){
     // console.log(data);
     newArr = data.split(',');
