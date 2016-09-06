@@ -13,6 +13,7 @@ exports.client = new Twitter({
 
 
 exports.lastTwenty = function(){
+
   this.client.get('statuses/user_timeline', function(error,tweets, response){
     if(error) throw error;
     tweets.forEach(function(element){
@@ -20,4 +21,6 @@ exports.lastTwenty = function(){
       console.log(element.text);
     });
   });
+
+
 };

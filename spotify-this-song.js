@@ -1,5 +1,6 @@
 var spotify = require('spotify');
-// var keys = require('./keys.js');
+var cliff = require('cliff'); //node library for formatting console output
+var fs = require('fs');
  
 exports.songQuery = function(searchTerm) {
 
@@ -12,10 +13,20 @@ exports.songQuery = function(searchTerm) {
           console.log('Error occurred: ' + err);
           return;
       }
-      
-      console.log(data.tracks.items[0].artists[0].name);
-      console.log(data.tracks.items[0].name);
-      console.log(data.tracks.items[0].preview_url);
-      console.log(data.tracks.items[0].album.name);
+
+      var rows = [
+        ['Artist Name', 'Song Name', 'Album Name', 'Preview URL']
+
+        ,[data.tracks.items[0].artists[0].name
+          ,data.tracks.items[0].name
+          ,data.tracks.items[0].album.name
+          ,data.tracks.items[0].preview_url
+         ]
+      ];
+
+      console.log(cliff.stringifyRows(rows, ['red','red','red','red']));
+
   });
+
+  
 }
